@@ -1,5 +1,5 @@
 class Pair:
-    MAX_SIZE = 100  # Константа для максимального размера списка
+    MAX_SIZE = 100  
 
     def __init__(self, first, second, size=10):
         if not (isinstance(first, int) and isinstance(second, int)):
@@ -14,8 +14,8 @@ class Pair:
         self.first = first
         self.second = second
         self.size = size
-        self.count = 2  # Устанавливаем начальное значение count (два числа)
-        self.elements = [first, second]  # Список для хранения элементов
+        self.count = 2 
+        self.elements = [first, second] 
 
     def read(self):
         try:
@@ -35,15 +35,13 @@ class Pair:
             raise ZeroDivisionError("Знаменатель не может быть равен нулю.")
         return self.first // self.second
 
-    # Метод для получения текущего значения size
+ 
     def get_size(self):
         return self.size
 
-    # Метод для получения текущего количества элементов (count)
     def get_count(self):
         return self.count
 
-    # Перегрузка операции индексирования для получения элемента
     def __getitem__(self, index):
         if index >= self.count:
             raise IndexError("Индекс выходит за пределы количества элементов.")
@@ -54,7 +52,7 @@ class Pair:
         if index >= self.size:
             raise IndexError(f"Нельзя установить элемент: максимальный размер {self.size}.")
         if index >= self.count:
-            self.count += 1  # Увеличиваем count, если добавляется новый элемент
+            self.count += 1  
         if index < len(self.elements):
             self.elements[index] = value
         else:
@@ -127,13 +125,11 @@ if __name__ == '__main__':
     print(f"Размер списка: {pair1.get_size()}")
     print(f"Количество элементов: {pair1.get_count()}")
 
-    # Использование индексирования
     print(f"Элемент по индексу 0: {pair1[0]}")
     print(f"Элемент по индексу 1: {pair1[1]}")
 
-    # Изменение элемента с помощью индексирования
     pair1[0] = 10
-    pair1[2] = 7  # Добавляем новый элемент
+    pair1[2] = 7 
     pair1.display()
     
     print(f"Обновленное количество элементов: {pair1.get_count()}")

@@ -2,7 +2,6 @@ class Hex:
     MAX_SIZE = 100 
 
     def __init__(self, hex_string='0'):
-        # Инициализируем список из MAX_SIZE элементов, каждый из которых равен 0
         self.hex_digits = [0] * self.MAX_SIZE
         hex_string = hex_string.lstrip('0x').upper()  
         real_size = min(len(hex_string), self.MAX_SIZE)
@@ -14,7 +13,6 @@ class Hex:
         self.size = real_size 
 
     def display(self):
-        # Выводим число в виде строки (начиная с самого старшего разряда)
         hex_str = ''.join(hex(digit)[2:].upper() for digit in reversed(self.hex_digits[:self.size]))
         print(f"0x{hex_str}")
 
@@ -23,14 +21,14 @@ class Hex:
         if not isinstance(other, Hex):
             raise TypeError("Операнд должен быть объектом класса Hex.")
         
-        result = Hex()  # Создаем новый объект для результата
+        result = Hex()  
         carry = 0
 
         # Складываем побитно числа
         for i in range(self.MAX_SIZE):
             total = self.hex_digits[i] + other.hex_digits[i] + carry
-            result.hex_digits[i] = total % 16  # Остаток от деления на 16
-            carry = total // 16  # Перенос в старший разряд
+            result.hex_digits[i] = total % 16  
+            carry = total // 16  
 
         result.size = max(self.size, other.size) + (1 if carry else 0)
         return result
